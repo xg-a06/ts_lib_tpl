@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "start": "tsc --build ./src -w",
-    "build": "rimraf ./bin && tsc --build ./src ",
+    "build": "rimraf ./dist && tsc --build ./src ",
     "clean": "rimraf ./node_modules"
   },
   "keywords": [],
