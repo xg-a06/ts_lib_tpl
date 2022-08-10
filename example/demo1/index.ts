@@ -1,6 +1,3 @@
-import { test } from '@tpl/modulea';
-import sum from '@tpl/moduleb';
+import { sum } from '@';
 
-console.log(test(1, 2));
-console.log(sum(4, 2));
-export default { a: 1 };
+console.log(sum(1, 2));

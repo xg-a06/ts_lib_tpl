@@ -2,14 +2,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const glob = require('glob');
 
-const indexs = glob('*/index.ts', { sync: true });
+const indexs = glob('example/**/index.ts', { sync: true });
 const htmlPlugins = [];
 const entries = indexs.reduce((ret, file) => {
-  const [dir] = file.split('/');
+  const [root, dir] = file.split('/');
   ret[`${dir}`] = file;
   htmlPlugins.push({
-    template: `${dir}/index.html`,
-    filename: `${dir}/index.html`,
+    template: `${root}/${dir}/index.html`,
+    filename: `${root}/${dir}/index.html`,
     inject: 'body',
     minify: true,
     chunks: [`${dir}`],
@@ -17,8 +17,16 @@ const entries = indexs.reduce((ret, file) => {
   return ret;
 }, {});
 
+let entry = entries;
+let tplPath = htmlPlugins;
+
+if (process.env.NODE_ENV === 'production') {
+  entry = './src/index.ts';
+  tplPath = false;
+}
+
 const config = {
-  entry: entries,
+  entry,
   devServer: {
     port: 2333,
     proxy: {
@@ -29,8 +37,8 @@ const config = {
     },
   },
   path: {
-    tplPath: htmlPlugins,
+    tplPath,
   },
 };
-
+console.log();
 module.exports = config;

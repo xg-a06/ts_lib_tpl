@@ -1,3 +1,3 @@
-console.log(2);
+import { sum } from '@';
 
-export default { a: 2 };
+console.log(sum(4, 2));
