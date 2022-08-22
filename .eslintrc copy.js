@@ -2,16 +2,16 @@ const path = require('path');
 
 module.exports = {
   env: {
-    browser: true,
-    es2021: true,
+    "browser": true,
+    "es2021": true
   },
-  extends: ['airbnb-base', 'prettier', 'plugin:@typescript-eslint/recommended'],
+  extends: ['airbnb-base', 'prettier'],
+  parser: "@babel/eslint-parser",
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    parser: '@typescript-eslint/parser',
   },
-  plugins: ['@typescript-eslint'],
+  plugins: [],
   settings: {
     'import/resolver': {
       alias: {
